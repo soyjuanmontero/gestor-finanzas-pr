@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Finanzas App - APX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Gestor de Finanzas</h1>
+
+        <!-- Resumen de saldos -->
+        <section class="capital">
+            <h3 class="capital_title">Tu Balance</h3>
+            <p   class="capital_total">0.00$</p>
+
+           
+            <div class="container__ingresos-gastos">
+                <div class="ingresos">
+                    <h4 class="ingresos_title">Ingresos</h4>
+                    <p  class="ingresos_monto">0.00$</p>
+                </div>
+                <div class="gastos">
+                    <h4 class="gastos_title">Gastos</h4>
+                    <p  class="gastos_monto">0.00$</p>
+                    
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Formulario -->
+        <section class="form-container">
+            <h3 class="form_title">Nueva Transacción</h3>
+            <form class="transaction-form" >
+                <input name="description" type="text" id="desc" placeholder="Descripción (ej. Alquiler)" required class="form_input-text">
+                <input name="price" type="number" id="amount" placeholder="Monto (ej. 500)" required class="form_input-number">
+                
+                <select name="type" id="type" class="form_select">
+                    <option  class="select_options"value="ingreso">Ingreso (+)  </option>
+                    <option class="select_options" value="gasto">Gasto (-)</option>
+                </select>
+
+                <button class="form_button" type="submit">Agregar</button>
+            </form>
+        </section>
+
+        <!-- Listado -->
+        <section class="history-container">
+            <h3 class="history_title">Historial</h3>
+            <ul class="list">
+                
+            </ul>
+        </section>
+        <template id="history-template" >
+           
+                <li>
+                    <div class="result-container">
+                        <p class="date"></p>
+                        
+                        <p class="result-description"></p>
+                        <p class="result-price"></p>
+                    </div>
+                   
+                </li>
+                
+                
+           
+
+        </template>
+    </div>
+
+
+</body>
+</html>

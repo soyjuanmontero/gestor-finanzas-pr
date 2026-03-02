@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: auto;
+}
+body{display: flex;
+justify-content: center;
+
+}
+.container{
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      background-color: #F4F7F6;
+      color: #2d3436;
+
+     min-width: 375px;
+     max-width: 420px;
+     padding: 30px;
+}
+
+.title{
+  
+    
+    text-align: center;
+    font-size: 32px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.title, .capital_title, .capital_total, .ingresos_title, .gastos_title, form_title{
+     font-size: 24px;
+}
+
+.capital{
+
+}
+
+.capital_title, .capital_total{
+    text-align: center;
+}
+
+.capital_total{margin-bottom: 15px;}
+
+
+.container__ingresos-gastos{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+
+.ingresos, .gastos{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.ingresos_title, .gastos_title{
+    margin-bottom: 15px;
+}
+.ingresos_monto{color: #2ECC71 ;}
+
+.gastos_monto{color: #E74C3C;}
+
+.form-container{}
+ .transaction-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_input-text, .form_input-number, .form_select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    box-sizing: border-box; /* Fundamental para el ancho */
+}
+
+.form_button {
+    width: 100%;
+    background-color: #0984E3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form_button:hover {
+    background-color: #0773c5;
+}
+
+.history-container{
+    padding-top: 30px;
+}
+
+.history_title{
+    text-align: center;
+    padding-bottom:30px ;
+}
+
+.result-container{
+    display: flex;
+    justify-content: space-between;
+}
