@@ -2,12 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: auto;
+   
 }
-body{display: flex;
-justify-content: center;
 
-}
 .container{
       font-family: "Poppins", sans-serif;
       font-size: 16px;
@@ -106,4 +103,14 @@ justify-content: center;
 .result-container{
     display: flex;
     justify-content: space-between;
+}
+
+
+li {
+    list-style: none;
+    background: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #dfe6e9; /* Un borde lateral sutil */
 }

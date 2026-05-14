@@ -1,8 +1,11 @@
 // 1. Definimos una interfaz para nuestras transacciones
+type TipoTransaccion = "ingreso" | "gasto";
 interface Transaccion {
-    type: string;
+     id: string;
+    type: TipoTransaccion
     description: string;
     price: number;
+    date:string
 }
 
 // 2. Estado inicial de la aplicación
@@ -12,6 +15,16 @@ let estado = {
     ingresos: 0,
     gastos: 0
 };
+
+const calcularTotales = () => {
+    return estado.transacciones.reduce((acc, t) => {
+        if (t.type === "ingreso") acc.ingresos += t.price;
+        else acc.gastos += t.price;
+        acc.balance = acc.ingresos - acc.gastos;
+        return acc;
+    }, { ingresos: 0, gastos: 0, balance: 0 });
+};
+
     // funciones de formato
 function convertirEnNum(text: string): number {
     
@@ -51,19 +64,15 @@ function actualizarInterfaz() {
     // Limpiamos la lista antes de re-dibujar
     listEl.innerHTML = "";
 
-    balanceEl.textContent = formatearARS(estado.balance);
-    ingresoEl.textContent = formatearARS(estado.ingresos);
-    gastoEl.textContent = formatearARS(estado.gastos);
+       const { ingresos, gastos, balance } = calcularTotales();
+
+    balanceEl.textContent = formatearARS(balance);
+    ingresoEl.textContent = formatearARS(ingresos);
+    gastoEl.textContent = formatearARS(gastos);
     
     estado.transacciones.forEach(t => {
         const clone= document.importNode(templateEl.content, true) as DocumentFragment
-    const hoy = new Date();
-const dd = String(hoy.getDate()).padStart(2, '0');
-const mm = String(hoy.getMonth() + 1).padStart(2, '0'); // Enero es 0
-const yyyy = hoy.getFullYear();
 
-
-const fechaFormateada = `${dd}/${mm}/${yyyy}`;
 if(clone.firstElementChild){
 
 
@@ -81,7 +90,7 @@ if(clone.firstElementChild){
     const date=clone.querySelector(".date")
     if(description)description.textContent=t.description
     if(price)price.textContent=t.price.toString()
-    if(date)date.textContent=fechaFormateada
+    if(date)date.textContent=t.date
         
       
 
@@ -105,9 +114,7 @@ function agregarTransaccion(): void {
         const formData = new FormData(miForm);
         const datos = Object.fromEntries(formData.entries());
        
-        if(balanceEl){
-           const balanceNum = convertirEnNum(balanceEl.textContent || "0");
-        }
+        
        
         const monto=Number(datos.price )
         if (isNaN(monto) || monto <= 0) {
@@ -115,22 +122,18 @@ function agregarTransaccion(): void {
     return; // Frenamos todo
 }
 
+
 const nuevaTransaccion: Transaccion = {
-            type: datos.type as string,
+            id:crypto.randomUUID(),
+            type: datos.type as TipoTransaccion,
             description: datos.description as string,
-            price: monto 
+            price: monto ,
+            date:new Date().toLocaleDateString('es-AR')
         };
         estado.transacciones.push(nuevaTransaccion);
         
         
 
-         if (nuevaTransaccion.type === "ingreso") {
-            estado.balance += monto;
-            estado.ingresos += monto;
-        } else {
-            estado.balance -= monto;
-            estado.gastos += monto;
-        }
     guardarEnStorage();
         actualizarInterfaz();
         
